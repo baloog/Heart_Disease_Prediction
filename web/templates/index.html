@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Disease Risk Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="page-bg"></div>
+
+<div class="card">
+    <div class="card-header">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+        <div class="header-text">
+            <h1>Heart Disease Risk Predictor</h1>
+            <p class="subtitle">Enter patient details to estimate heart disease risk (runs only on this device).</p>
+        </div>
+    </div>
+
+    <form method="POST">
+        <div>
+            <label for="age">
+                Age (years)
+                <span class="hint">Age of the patient in completed years.</span>
+            </label>
+            <input type="number" name="age" id="age" required step="1" min="1" max="120">
+        </div>
+
+        <div>
+            <label for="sex">
+                Sex
+                <span class="hint">1 = male, 0 = female.</span>
+            </label>
+            <select name="sex" id="sex">
+                <option value="1">Male (1)</option>
+                <option value="0">Female (0)</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="cp">
+                Chest Pain Type (cp)
+                <span class="hint">
+                    0 = typical angina, 1 = atypical angina, 2 = non-anginal pain, 3 = asymptomatic.
+                </span>
+            </label>
+            <select name="cp" id="cp">
+                <option value="0">0 - Typical angina</option>
+                <option value="1">1 - Atypical angina</option>
+                <option value="2">2 - Non-anginal pain</option>
+                <option value="3">3 - Asymptomatic</option>
+                <option value="4">4 - (if used in your data)</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="trestbps">
+                Resting BP (trestbps, mm Hg)
+                <span class="hint">Resting blood pressure on admission, in mm Hg.</span>
+            </label>
+            <input type="number" name="trestbps" id="trestbps" required step="1" min="60" max="260">
+        </div>
+
+        <div>
+            <label for="chol">
+                Cholesterol (chol, mg/dl)
+                <span class="hint">Serum cholesterol level in mg/dl.</span>
+            </label>
+            <input type="number" name="chol" id="chol" required step="1" min="80" max="700">
+        </div>
+
+        <div>
+            <label for="fbs">
+                Fasting Blood Sugar &gt; 120 (fbs)
+                <span class="hint">1 if fasting blood sugar &gt; 120 mg/dl, else 0.</span>
+            </label>
+            <select name="fbs" id="fbs">
+                <option value="0">No (0)</option>
+                <option value="1">Yes (1)</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="restecg">
+                Resting ECG (restecg)
+                <span class="hint">Resting electrocardiogram result: 0, 1, or 2 based on ECG findings.</span>
+            </label>
+            <select name="restecg" id="restecg">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="thalach">
+                Max Heart Rate (thalach)
+                <span class="hint">Maximum heart rate achieved during exercise test.</span>
+            </label>
+            <input type="number" name="thalach" id="thalach" required step="1" min="60" max="250">
+        </div>
+
+        <div>
+            <label for="exang">
+                Exercise-Induced Angina (exang)
+                <span class="hint">1 = angina induced by exercise, 0 = no angina.</span>
+            </label>
+            <select name="exang" id="exang">
+                <option value="0">No (0)</option>
+                <option value="1">Yes (1)</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="oldpeak">
+                ST Depression (oldpeak)
+                <span class="hint">ST depression induced by exercise relative to rest.</span>
+            </label>
+            <input type="number" name="oldpeak" id="oldpeak" required step="0.1" min="0" max="10">
+        </div>
+
+        <div>
+            <label for="slope">
+                Slope of ST Segment (slope)
+                <span class="hint">1, 2, or 3 describing the slope of the ST segment.</span>
+            </label>
+            <select name="slope" id="slope">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="ca">
+                Number of Major Vessels (ca)
+                <span class="hint">Number of major vessels (0–3) colored by fluoroscopy.</span>
+            </label>
+            <input type="number" name="ca" id="ca" required step="1" min="0" max="3">
+        </div>
+
+        <div class="full-width">
+            <label for="thal">
+                Thalassemia (thal)
+                <span class="hint">Thalassemia test result: typical values include 1, 2, 3, 6, 7.</span>
+            </label>
+            <select name="thal" id="thal">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+        </div>
+
+        <div class="full-width">
+            <button type="submit">Predict Heart Disease Risk</button>
+        </div>
+    </form>
+
+    {% if prediction %}
+        <div class="result {% if prediction == 'Heart Disease' %}positive{% else %}negative{% endif %}">
+            <div class="result-main">
+                <div>
+                    <strong>Prediction:</strong> {{ prediction }}<br>
+                    {% if risk_level %}
+                        <span class="risk-level">{{ risk_level }}</span>
+                    {% endif %}
+                </div>
+                {% if status_image %}
+                    <img
+                        src="{{ url_for('static', filename='images/' + status_image) }}"
+                        alt="Status image"
+                        class="status-image"
+                    >
+                {% endif %}
+            </div>
+        </div>
+
+        {% if probability is not none %}
+        <div class="gauge-container">
+            <div class="gauge" data-prob="{{ (probability * 100) | round(1) }}">
+                <div class="gauge-base"></div>
+                <div class="gauge-fill"></div>
+                <div class="gauge-cover">
+                    <span>0%</span>
+                </div>
+            </div>
+            <div class="gauge-label-text">
+                Model-estimated probability of heart disease.
+            </div>
+            <div class="risk-bands">
+                <span class="low">Low: 0–30%</span> ·
+                <span class="moderate">Moderate: 30–60%</span> ·
+                <span class="high">High: 60–100%</span>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if reasons %}
+        <div class="explanation">
+            <h3>Why this prediction?</h3>
+            <ul>
+                {% for r in reasons %}
+                    <li>{{ r }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if advice %}
+        <div class="advice">
+            <h3>Health advice</h3>
+            <p>{{ advice }}</p>
+        </div>
+        {% endif %}
+
+        <div class="note">
+            This tool uses a machine-learning model trained on the Cleveland heart disease dataset.<br>
+            It is for educational/demo purposes only and is not a substitute for professional medical advice.
+        </div>
+    {% endif %}
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const gauge = document.querySelector(".gauge");
+    if (!gauge) return;
+
+    const prob = parseFloat(gauge.dataset.prob || "0");   // 0–100
+    const capped = Math.max(0, Math.min(prob, 100));      // clamp
+    const angle = capped * 1.8; // 0–180 degrees for semi-circle
+
+    const fill = gauge.querySelector(".gauge-fill");
+    const label = gauge.querySelector(".gauge-cover span");
+
+    if (fill) {
+        fill.style.transform = "rotate(" + angle + "deg)";
+    }
+    if (label) {
+        label.textContent = capped.toFixed(1) + "%";
+    }
+});
+</script>
+</body>
+</html>

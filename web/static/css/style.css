@@ -1,0 +1,263 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px 10px;
+    position: relative;
+    color: #111827;
+}
+
+/* Background image overlay */
+.page-bg {
+    position: fixed;
+    inset: 0;
+    background-image: url("../images/heart_bg.png");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.18;
+    z-index: -1;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(6px);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
+    padding: 24px 28px;
+    max-width: 720px;
+    width: 100%;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.header-text h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #555;
+    margin: 2px 0 0 0;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 16px;
+    margin-bottom: 10px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.hint {
+    display: block;
+    font-size: 11px;
+    color: #777;
+    margin-top: 2px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid #cbd5f5;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.4);
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.result {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.result-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.result.positive {
+    background: rgba(220, 38, 38, 0.08);
+    border: 1px solid rgba(220, 38, 38, 0.4);
+    color: #991b1b;
+}
+
+.result.negative {
+    background: rgba(22, 163, 74, 0.08);
+    border: 1px solid rgba(22, 163, 74, 0.4);
+    color: #14532d;
+}
+
+.status-image {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+}
+
+.risk-level {
+    font-size: 12px;
+    color: #374151;
+}
+
+.gauge-container {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.gauge {
+    position: relative;
+    width: 180px;
+    height: 90px;
+    overflow: hidden;
+}
+
+.gauge-base {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 180px 180px 0 0;
+    background: #e5e7eb;
+}
+
+.gauge-fill {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 180px 180px 0 0;
+    transform-origin: center bottom;
+    transform: rotate(0deg);
+    background: linear-gradient(to right, #22c55e, #eab308, #ef4444);
+    transition: transform 0.6s ease-in-out;
+}
+
+.gauge-cover {
+    position: absolute;
+    width: 140px;
+    height: 70px;
+    background: #ffffff;
+    border-radius: 140px 140px 0 0;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.gauge-label-text {
+    font-size: 11px;
+    color: #555;
+    text-align: center;
+}
+
+.risk-bands {
+    font-size: 11px;
+    color: #777;
+    text-align: center;
+}
+
+.risk-bands .low {
+    color: #16a34a;
+}
+.risk-bands .moderate {
+    color: #eab308;
+}
+.risk-bands .high {
+    color: #dc2626;
+}
+
+.explanation {
+    margin-top: 16px;
+    font-size: 13px;
+}
+
+.explanation h3 {
+    margin: 0 0 6px 0;
+    font-size: 14px;
+}
+
+.explanation ul {
+    padding-left: 18px;
+    margin: 0;
+}
+
+.explanation li {
+    margin-bottom: 4px;
+}
+
+.advice {
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+.advice h3 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+}
+
+.advice p {
+    margin: 0;
+}
+
+.note {
+    font-size: 11px;
+    color: #777;
+    margin-top: 10px;
+}
