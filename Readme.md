@@ -15,44 +15,45 @@ It includes:
 ✔ Visualizations for model evaluation
 ✔ Easy-to-follow folder structure
 
-📁 Project Directory Structure
 HeartDisease_Prediction/
 │
 ├── data/
 │   ├── raw/
-│   │   └── heart.csv               # original dataset
-│   └── processed/                  # (optional) cleaned files
+│   │   └── heart.csv                # Original dataset
+│   └── processed/                   # Cleaned / transformed (optional)
 │
 ├── models/
-│   ├── heart_disease_model.joblib  # tuned RandomForest model
-│   └── heart_disease_xgb.joblib    # XGBoost model (optional)
+│   ├── heart_disease_model.joblib   # Tuned RandomForest model
+│   └── heart_disease_xgb_model.joblib  # XGBoost model (optional)
 │
-├── reports/
-│   ├── figures/                    # saved evaluation charts
-│   └── metrics/                    # classification reports, JSON logs
+├── outputs/
+│   ├── figures/                     # Charts and evaluation plots
+│   └── reports/                     # Text / evaluation reports
 │
 ├── src/
-│   ├── config.py
-│   ├── preprocessing.py
-│   ├── train.py                    # train RandomForest
-│   ├── train_xgboost.py            # train XGBoost
-│   ├── tune_random_forest.py       # hyperparameter tuning
-│   ├── evaluate.py                 # evaluate saved model
-│   └── inference.py                # run ML inference on sample patient
+│   ├── config.py                    # Paths + settings
+│   ├── preprocessing.py             # Cleaning + splits
+│   ├── train.py                     # Train Random Forest
+│   ├── xgboost.py                   # Train XGBoost
+│   ├── evaluate.py                  # Evaluate model performance
+│   ├── tune_rf.py                   # Hyperparameter tuning
+│   └── inference.py                 # Predict single patient
 │
 ├── web/
-│   ├── app.py                      # Flask server
+│   ├── app.py                       # Flask backend
 │   ├── static/
-│   │   ├── heart_bg.jpg
-│   │   ├── logo.png
-│   │   ├── healthy.png
-│   │   └── unhealthy.png
+│   │   ├── css/style.css            # Website CSS
+│   │   └── images/
+│   │       ├── heart_bg.jpg         # Background image
+│   │       ├── logo.png             # Website logo
+│   │       ├── healthy.png          # Healthy result UI image
+│   │       └── unhealthy.png        # Diseased result UI image
 │   └── templates/
-│       └── index.html              # website UI
+│       └── index.html               # Frontend UI
 │
-├── venv/                           # virtual environment
 ├── requirements.txt
 └── README.md
+
 
 🛠️ Installation Instructions
 1️⃣ Clone or download the project
