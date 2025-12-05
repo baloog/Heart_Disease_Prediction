@@ -2,7 +2,7 @@
 
 A complete Python + Flask project featuring RandomForest, XGBoost, Model Tuning, and a Local Interactive Website.
 
-📌 Overview
+ Overview
 
 This project predicts whether a patient has heart disease using machine learning models trained on the Cleveland Heart Disease dataset.
 It includes:
@@ -13,45 +13,47 @@ It includes:
 ✔ A beautiful Flask-based local website for user interaction
 ✔ Custom UI with images, probability gauge, explanations, and health advice
 ✔ Visualizations for model evaluation
-✔ Easy-to-follow folder structure
 
+### 📁 Project Folder Structure
+
+```text
 HeartDisease_Prediction/
 │
 ├── data/
-│   ├── raw/
-│   │   └── heart.csv                # Original dataset
-│   └── processed/                   # Cleaned / transformed (optional)
+│   ├── raw/                      # Original dataset
+│   └── processed/                # Cleaned / transformed data
 │
 ├── models/
-│   ├── heart_disease_model.joblib   # Tuned RandomForest model
-│   └── heart_disease_xgb_model.joblib  # XGBoost model (optional)
+│   ├── heart_disease_model.joblib
+│   ├── tuned_rf_model.joblib
+│   └── xgb_model.joblib
 │
 ├── outputs/
-│   ├── figures/                     # Charts and evaluation plots
-│   └── reports/                     # Text / evaluation reports
+│   ├── figures/                  # Charts and plots
+│   └── reports/                  # Text evaluation reports
 │
 ├── src/
-│   ├── config.py                    # Paths + settings
-│   ├── preprocessing.py             # Cleaning + splits
-│   ├── train.py                     # Train Random Forest
-│   ├── xgboost.py                   # Train XGBoost
-│   ├── evaluate.py                  # Evaluate model performance
-│   ├── tune_rf.py                   # Hyperparameter tuning
-│   └── inference.py                 # Predict single patient
+│   ├── config.py                 # Paths and settings
+│   ├── preprocessing.py          # Cleaning + splits
+│   ├── train.py                  # Train Random Forest
+│   ├── xgboost.py                # Train XGBoost
+│   ├── evaluate.py               # Evaluate performance
+│   ├── tune_rf.py                # Hyperparameter tuning
+│   └── inference.py              # Predict single patient
 │
 ├── web/
-│   ├── app.py                       # Flask backend
-│   ├── static/
-│   │   ├── css/style.css            # Website CSS
+│   ├── app.py                    # Flask backend
+│   ├── static/                   # UI Design
+│   │   ├── css/style.css
 │   │   └── images/
-│   │       ├── heart_bg.jpg         # Background image
-│   │       ├── logo.png             # Website logo
-│   │       ├── healthy.png          # Healthy result UI image
-│   │       └── unhealthy.png        # Diseased result UI image
+│   │       ├── heart_bg.jpg
+│   │       ├── logo.png
+│   │       ├── healthy.png
+│   │       └── unhealthy.png
 │   └── templates/
-│       └── index.html               # Frontend UI
+│       └── index.html
 │
-├── requirements.txt
+├── requirements.txt                # required libraries
 └── README.md
 
 
